@@ -83,7 +83,7 @@ if __name__ == '__main__':
     transformed_pose2d, weights = poseLifting.transform_joints(pose_2d_mpiis, visibilities)
     pose_3d = poseLifting.compute_3d(transformed_pose2d, weights)
     
-    ######
+    ######fff
 
     try:
         import matplotlib.pyplot as plt
