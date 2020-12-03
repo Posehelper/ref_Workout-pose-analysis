@@ -1,3 +1,11 @@
+'''
+유뷰브 주소 id 를 인자로
+영상을 다운받는 함수.
+@Funtion : yt_download
+
+'''
+
+
 import pytube
   
 def yt_download(video_id, video_path):

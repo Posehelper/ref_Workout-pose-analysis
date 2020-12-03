@@ -1,4 +1,5 @@
 .ipynb_checkpoints/
-data/
+datas/
 test.ipynb
 __pycache__/
+.idea

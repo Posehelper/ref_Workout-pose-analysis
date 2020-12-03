@@ -1,3 +1,16 @@
+'''
+유뷰브 주소 id 를 인자로
+영상을 다운받는 함수.
+@Funtion : crop_and_save
+
+폴더 패스와 저장할 패스를 받아서
+
+폴더 패스에 잇는 이미지 파일을 불러와 리사이즈해서 저장.
+
+
+'''
+
+
 import os
 import argparse
 import cv2
