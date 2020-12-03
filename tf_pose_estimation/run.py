@@ -1,3 +1,5 @@
+####### library import #######
+
 import argparse
 import logging
 import sys
@@ -9,11 +11,11 @@ import numpy as np
 from tf_pose.estimator import TfPoseEstimator
 from tf_pose.networks import get_graph_path, model_wh
 
-###### 3d pose
+###### 3d pose ######
 from tf_pose.lifting.prob_model import Prob3dPose
 from tf_pose.lifting.draw import plot_pose
-######
 
+###### log 설정 ######
 logger = logging.getLogger('TfPoseEstimatorRun')
 logger.handlers.clear()
 logger.setLevel(logging.DEBUG)
@@ -25,6 +27,7 @@ logger.addHandler(ch)
 
 
 if __name__ == '__main__':
+    ###### 명령행 옵션 parser 설정 ######
     parser = argparse.ArgumentParser(description='tf-pose-estimation run')
     parser.add_argument('--image', type=str, default='./images/p1.jpg')
     parser.add_argument('--model', type=str, default='cmu',
@@ -37,7 +40,9 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    w, h = model_wh(args.resize)
+
+    w, h = model_wh(args.resize)     # model_wh 함수 16배수인지 확인하고, int로 변경.
+
     if w == 0 or h == 0:
         e = TfPoseEstimator(get_graph_path(args.model), target_size=(432, 368))
     else:
@@ -55,9 +60,10 @@ if __name__ == '__main__':
 
     logger.info('inference image: %s in %.4f seconds.' % (args.image, elapsed))
 
+
     image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
 
-    ###### 3d pose
+    #### lifting 관련 import 2D => 3D
     logger.info('3d lifting initialization')
     poseLifting = Prob3dPose('./tf_pose/lifting/models/prob_model_params.mat')
     
